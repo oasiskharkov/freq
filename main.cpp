@@ -28,7 +28,7 @@ int main(int argc, char** argv)
         {
             in >> lexeme;
             std::transform(lexeme.begin(), lexeme.end(), lexeme.begin(), ::tolower);
-            auto pred = [](const char l) { return !(l >= 'a' and l <= 'z'); };
+            const auto& pred = [](const char l) { return !(l >= 'a' and l <= 'z'); };
             std::replace_if(lexeme.begin(), lexeme.end(), pred, ' ');
 
             istringstream ss(lexeme);
@@ -50,10 +50,9 @@ int main(int argc, char** argv)
     }
     else
     {
-        std::cerr << "Can't open in.txt" << std::endl;
+        std::cerr << "Can't open input file in.txt" << std::endl;
         return EXIT_FAILURE;
     }
-
 
     std::vector<std::pair<int, std::string>> freq;
     std::transform(dictionary.begin(), dictionary.end(), std::back_inserter(freq), [](const auto& kv){ return std::make_pair(kv.second, kv.first);});
@@ -70,7 +69,7 @@ int main(int argc, char** argv)
     }
     else
     {
-        std::cerr << "Can't open in.txt" << std::endl;
+        std::cerr << "Can't open output file out.txt" << std::endl;
         return EXIT_FAILURE;
     }
 
